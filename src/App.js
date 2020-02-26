@@ -59,6 +59,10 @@ refreshloc(){
   }, 1000);
 }
 
+/*getLocationsFromDB(){
+   this.state.lieux.map(lieu =>{lieu.NomLieu} {lieu.LatLieu} {lieu.LongLieu})
+
+}*/
 
 userIcon = L.icon({
   iconUrl: user,
@@ -85,7 +89,7 @@ userIcon = L.icon({
     this.getLocation();
     this.refreshloc();
     const pos = [this.state.lat, this.state.lng]
-
+    
 
 
     return (
@@ -96,6 +100,9 @@ userIcon = L.icon({
             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
+          {
+            this.state.lieux.map(lieu => <Marker position={[ lieu.LatLieu, lieu.LongLieu]}></Marker>)
+          }
           <Marker position={pos} icon={this.userIcon}>
             <Popup>
               <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
@@ -105,6 +112,7 @@ userIcon = L.icon({
         <Button block="true">Liste monuments</Button>
 		<ul>
         { this.state.lieux.map(lieu => <li>{lieu.NomLieu} {lieu.LatLieu} {lieu.LongLieu}</li>)}
+        
       </ul>
       </div>
      
