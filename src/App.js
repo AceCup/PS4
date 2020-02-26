@@ -101,7 +101,11 @@ userIcon = L.icon({
             attribution='&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           {
-            this.state.lieux.map(lieu => <Marker position={[ lieu.LatLieu, lieu.LongLieu]}></Marker>)
+            this.state.lieux.map(lieu => <Marker position={[ lieu.LatLieu, lieu.LongLieu]}>
+              <Popup>
+              <span>{lieu.NomLieu}<br/>{lieu.Desc}</span>
+              </Popup>
+            </Marker>)
           }
           <Marker position={pos} icon={this.userIcon}>
             <Popup>
@@ -111,7 +115,7 @@ userIcon = L.icon({
         </Map>
         <Button block="true">Liste monuments</Button>
 		<ul>
-        { this.state.lieux.map(lieu => <li>{lieu.NomLieu} {lieu.LatLieu} {lieu.LongLieu}</li>)}
+        { this.state.lieux.map(lieu => <li>{lieu.NomLieu} {lieu.LatLieu} {lieu.LongLieu} {lieu.Desc} </li>)}
         
       </ul>
       </div>
